@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccg8sgkw2tju1"]
+
+[ext_resource type="PackedScene" uid="uid://dmruwmswylq0o" path="res://Scenes/Enemies/enemy_manager.tscn" id="1_f80ma"]
+[ext_resource type="PackedScene" uid="uid://o611ga5dcuxt" path="res://Scenes/GameCamera/game_camera.tscn" id="2_f80ma"]
+[ext_resource type="PackedScene" uid="uid://dvhw17bp32phn" path="res://Scenes/Players/player_rotating.tscn" id="3_ao36t"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="EnemyManager" parent="." instance=ExtResource("1_f80ma")]
+
+[node name="GameCamera" parent="." instance=ExtResource("2_f80ma")]
+zoom = Vector2(3, 3)
+
+[node name="BasicPlayer" parent="." instance=ExtResource("3_ao36t")]

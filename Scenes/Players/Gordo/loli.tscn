@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwrel2kbgag26"]
+
+[ext_resource type="Script" uid="uid://1hirh23gg4se" path="res://Scenes/Players/Gordo/loli.gd" id="1_6k7fg"]
+[ext_resource type="SpriteFrames" uid="uid://b36duwilq1dvt" path="res://Scenes/Players/Gordo/Animaciones/loli.tres" id="2_aw6s0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wx1hb"]
+
+[node name="Loli" type="CharacterBody2D"]
+script = ExtResource("1_6k7fg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = ExtResource("2_aw6s0")
+animation = &"run"
+frame_progress = 0.7692643
+offset = Vector2(0, -16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+scale = Vector2(1.25, 1.25)
+shape = SubResource("CircleShape2D_wx1hb")

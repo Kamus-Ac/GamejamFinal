@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqykekd5t84en"]
+
+[ext_resource type="SpriteFrames" uid="uid://b36duwilq1dvt" path="res://Scenes/Players/Gordo/Animaciones/loli.tres" id="2_y7i06"]
+
+[sub_resource type="GDScript" id="GDScript_fuea1"]
+script/source = "extends RigidBody2D
+
+const MAX_SPEED = 75
+var chasing := true  # true = usando linear_velocity, false = física real
+
+func _physics_process(delta):
+	if chasing:
+		var dir = get_direction_to_player()
+		linear_velocity = dir * MAX_SPEED
+	if get_contact_count() > 0:
+			linear_velocity = Vector2.ZERO
+			handle_hit()
+
+func get_direction_to_player():
+	var player = get_tree().get_first_node_in_group(\"player\")
+	if player:
+		return (player.global_position - global_position).normalized()
+	return Vector2.ZERO
+
+func handle_hit():
+	chasing = false
+	await get_tree().create_timer(1.0).timeout
+	chasing = true
+	
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcvw6"]
+
+[node name="Enemy" type="RigidBody2D" groups=["enemies"]]
+gravity_scale = 0.0
+lock_rotation = true
+script = SubResource("GDScript_fuea1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.011764706, 0, 1)
+sprite_frames = ExtResource("2_y7i06")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jcvw6")
+
+[node name="HitLag" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="HitLag" to="." method="_on_hit_lag_timeout"]

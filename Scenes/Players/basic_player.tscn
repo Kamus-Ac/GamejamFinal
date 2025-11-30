@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvqgi43nkhtrb"]
+
+[ext_resource type="Script" uid="uid://dan1nkfvkil6u" path="res://Scenes/Players/basic_player.gd" id="1_qdrsv"]
+
+[node name="BasicPlayer" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
+script = ExtResource("1_qdrsv")
+
+[node name="Flip" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flip"]
+
+[node name="Areas" type="Node2D" parent="Flip"]
+
+[node name="recolect" type="Area2D" parent="Flip/Areas"]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/recolect"]
+
+[node name="AttackArea" type="Area2D" parent="Flip/Areas"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/AttackArea"]
+
+[node name="Daño" type="Area2D" parent="Flip/Areas"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/Daño"]

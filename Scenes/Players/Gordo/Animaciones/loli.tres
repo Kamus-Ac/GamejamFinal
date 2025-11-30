@@ -1,0 +1,123 @@
+[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://b36duwilq1dvt"]
+
+[ext_resource type="Texture2D" uid="uid://crnxne7yi3o1h" path="res://Scenes/Players/Gordo/Animaciones/loli_death.png" id="1_md3q0"]
+[ext_resource type="Texture2D" uid="uid://c2b6vvbpmm45o" path="res://Scenes/Players/Gordo/Animaciones/pixil-frame-0.png" id="1_u2ovw"]
+[ext_resource type="Texture2D" uid="uid://cf71huml05rpy" path="res://Scenes/Players/Gordo/Animaciones/loli_walking.png" id="1_urmrd"]
+[ext_resource type="Texture2D" uid="uid://chev1p6pjtq6v" path="res://Scenes/Players/Gordo/Animaciones/loli_hurt.png" id="2_asx7s"]
+[ext_resource type="Texture2D" uid="uid://bsdgjpf4d8xoa" path="res://Scenes/Players/Gordo/Animaciones/pixil-frame-1.png" id="2_n1sqq"]
+[ext_resource type="Texture2D" uid="uid://pmnnaxp0cu3h" path="res://Scenes/Players/Gordo/Animaciones/loli_idle.png" id="3_23ogg"]
+[ext_resource type="Texture2D" uid="uid://40eheuaouyvk" path="res://Scenes/Players/Gordo/Animaciones/pixil-frame-2.png" id="3_pvl66"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ovw"]
+atlas = ExtResource("1_md3q0")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1sqq"]
+atlas = ExtResource("1_md3q0")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvl66"]
+atlas = ExtResource("2_asx7s")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ravc"]
+atlas = ExtResource("2_asx7s")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1j0dt"]
+atlas = ExtResource("3_23ogg")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8fw7"]
+atlas = ExtResource("3_23ogg")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4qqra"]
+atlas = ExtResource("1_urmrd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qtu7c"]
+atlas = ExtResource("1_urmrd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md3q0"]
+atlas = ExtResource("1_urmrd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asx7s"]
+atlas = ExtResource("1_urmrd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23ogg"]
+atlas = ExtResource("1_urmrd")
+region = Rect2(128, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u2ovw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_n1sqq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_pvl66")
+}],
+"loop": true,
+"name": &"basicAttack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ovw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n1sqq")
+}],
+"loop": true,
+"name": &"death",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvl66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ravc")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1j0dt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8fw7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4qqra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qtu7c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md3q0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asx7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23ogg")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}]

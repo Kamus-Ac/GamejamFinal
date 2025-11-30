@@ -1,0 +1,73 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bdgxd4xg5627t"]
+
+[ext_resource type="Texture2D" uid="uid://dgl2iiewxocev" path="res://tileset test.png" id="1_pcb6j"]
+[ext_resource type="Texture2D" uid="uid://dfkb18l7f0fre" path="res://Scenes/assets/pixilart-sprite_4.png" id="2_foose"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ofisl"]
+texture = ExtResource("1_pcb6j")
+texture_region_size = Vector2i(32, 32)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -9)
+0:0/1 = 1
+0:0/1/texture_origin = Vector2i(0, -9)
+0:0/1/z_index = 1
+0:0/1/y_sort_origin = 2
+0:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 0, 0, 8, 16, 0, 0, -8)
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(0, -9)
+0:0/2/z_index = 2
+0:0/2/y_sort_origin = 3
+0:0/3 = 3
+0:0/3/texture_origin = Vector2i(0, -9)
+0:0/3/z_index = 3
+0:0/3/y_sort_origin = 4
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -9)
+1:0/0/z_index = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fx1n5"]
+texture = ExtResource("2_foose")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -20)
+0:0/0/z_index = 1
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, -20)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -20)
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+0:7/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -20)
+1:0/0/z_index = 1
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -20)
+2:0/0/z_index = 1
+2:1/0 = 0
+2:1/0/texture_origin = Vector2i(0, -20)
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(64, 32)
+physics_layer_0/collision_layer = 0
+sources/0 = SubResource("TileSetAtlasSource_ofisl")
+sources/2 = SubResource("TileSetAtlasSource_fx1n5")
