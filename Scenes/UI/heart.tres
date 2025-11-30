@@ -1,0 +1,37 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://b6e6oqvokyycn"]
+
+[ext_resource type="Texture2D" uid="uid://b2it36v8ehl58" path="res://Scenes/assets/ui/pixilart-sprite.png" id="1_pl4f3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymsm0"]
+atlas = ExtResource("1_pl4f3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vabb"]
+atlas = ExtResource("1_pl4f3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag3pi"]
+atlas = ExtResource("1_pl4f3")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymsm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vabb")
+}],
+"loop": false,
+"name": &"muerto",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag3pi")
+}],
+"loop": true,
+"name": &"vivo",
+"speed": 5.0
+}]

@@ -11,7 +11,7 @@ signal animation_done
 
 #---VIDA---#
 #var hearts_list: Array[TextureRect]
-var health = 20
+var health = 3
 
 
 enum STATE {
@@ -44,6 +44,7 @@ func _physics_process(delta: float) -> void:
 	velocity = input_dir * MAX_SPEED
 	move_and_slide()
 	
+	#print("PLAYER STATE:" + str(current_state))
 	match current_state:
 		STATE.IDLE:
 			anim.play("idle")
@@ -113,6 +114,7 @@ func take_damage():
 	if health>0:
 		health-=1
 		print("dfsd",health)
+		SignalManager.took_damage.emit(health)
 		current_state = STATE.HURTED
 		#animacion
 		#update heart display, es funcion

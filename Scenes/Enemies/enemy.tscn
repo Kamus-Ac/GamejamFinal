@@ -14,7 +14,7 @@
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 7
+collision_mask = 15
 script = ExtResource("1_x1rqp")
 skins = Array[SpriteFrames]([ExtResource("2_tq087"), ExtResource("2_jcvw6"), ExtResource("4_4bcle"), ExtResource("5_beuat"), ExtResource("6_7ubbs"), ExtResource("7_ycxl0"), ExtResource("8_pko3b"), ExtResource("9_53ao7")])
 
