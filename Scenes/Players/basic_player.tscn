@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bvqgi43nkhtrb"]
+[gd_scene load_steps=3 format=3 uid="uid://bvqgi43nkhtrb"]
 
 [ext_resource type="Script" uid="uid://dan1nkfvkil6u" path="res://Scenes/Players/basic_player.gd" id="1_qdrsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdrsv"]
 
 [node name="BasicPlayer" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
@@ -24,5 +26,16 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/AttackArea"]
 
 [node name="Daño" type="Area2D" parent="Flip/Areas"]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/Daño"]
+debug_color = Color(0.87058824, 0, 0.8509804, 0.77254903)
+
+[node name="UltiArea" type="Area2D" parent="Flip/Areas"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flip/Areas/UltiArea"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_qdrsv")
+
+[connection signal="body_entered" from="Flip/Areas/Daño" to="." method="_on_daño_body_entered"]

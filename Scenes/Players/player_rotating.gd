@@ -111,3 +111,7 @@ func _on_AttackArea_body_entered(body):
 func _on_recolect_body_entered(body: Node2D) -> void:
 	if body.is_in_group("objects"):
 		object = body
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	emit_signal("animation_done")

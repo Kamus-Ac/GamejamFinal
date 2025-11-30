@@ -20,14 +20,18 @@ position = Vector2(15, 1)
 shape = ExtResource("5_12uka")
 
 [node name="CollisionShape2D" parent="Flip/Areas/AttackArea" index="0"]
-position = Vector2(12, 14)
+position = Vector2(11.555, 7.715)
+scale = Vector2(0.625, 0.625)
 shape = ExtResource("6_88hw3")
+debug_color = Color(0.99607843, 0, 0.17254902, 0.8784314)
 
 [node name="CollisionShape2D" parent="Flip/Areas/Daño" index="0"]
-position = Vector2(0, 10)
+position = Vector2(0, 6.025)
+scale = Vector2(1.365, 1.365)
 shape = SubResource("CircleShape2D_klec2")
 
 [node name="Marker2D" type="Marker2D" parent="." index="1"]
 position = Vector2(1, 0)
 
+[connection signal="animation_finished" from="Flip/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="Flip/Areas/recolect" to="." method="_on_recolect_body_entered"]
