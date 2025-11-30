@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=22 format=3 uid="uid://dlevfnbld3xxe"]
+[gd_resource type="SpriteFrames" load_steps=24 format=3 uid="uid://dlevfnbld3xxe"]
 
 [ext_resource type="Texture2D" uid="uid://gsf6h3fhs2l3" path="res://Scenes/Players/Viejita/Animaciones/Viejita_BasicAttack.png" id="1_oj281"]
 [ext_resource type="Texture2D" uid="uid://dbfxadh6kugkm" path="res://Scenes/Players/Viejita/Animaciones/Viejita_death.png" id="2_bx5wo"]
@@ -46,6 +46,14 @@ region = Rect2(0, 0, 32, 32)
 atlas = ExtResource("3_1buty")
 region = Rect2(32, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj281"]
+atlas = ExtResource("4_t2jj7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx5wo"]
+atlas = ExtResource("4_t2jj7")
+region = Rect2(32, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ye5li"]
 atlas = ExtResource("4_t2jj7")
 region = Rect2(0, 0, 32, 32)
@@ -88,9 +96,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_icjm6")
 }],
-"loop": true,
+"loop": false,
 "name": &"basicAttack",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -113,8 +121,19 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5bpet")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj281")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bx5wo")
+}],
+"loop": true,
+"name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -141,7 +160,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kxxk0")
 }],
-"loop": true,
+"loop": false,
 "name": &"ulti",
 "speed": 5.0
 }]
