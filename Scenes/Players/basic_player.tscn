@@ -6,6 +6,7 @@
 
 [node name="BasicPlayer" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
+collision_mask = 9
 script = ExtResource("1_qdrsv")
 
 [node name="Flip" type="Node2D" parent="."]
