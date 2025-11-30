@@ -7,7 +7,7 @@ const IMPULSE = 0.5
 
 #varibles debug
 var vel: Vector2 = Vector2.ZERO
-
+var check
 var collision
 var body: Node2D
 
@@ -25,11 +25,14 @@ func _ready() -> void:
 func _physics_process(_delta):
 	if !hitting:
 		var direction = get_direction_to_player()
+		
 		vel = direction * MAX_SPEED
 		velocity = vel
 		collision = move_and_collide(velocity*_delta)
-		if collision:
-			SignalManager.isLaunching.emit()
+		if collision: 
+			check = collision.get_collider()
+			if check.is_in_group("objects") || check.is_in_group("enemies"):
+				SignalManager.isLaunching.emit()
 	if hitting:
 		if hit_enemy_enemy:
 			var push_force = Vector2(
@@ -53,7 +56,7 @@ func _physics_process(_delta):
 			)
 			#velocity = Vector2(clampf(push_obj_enemy.x,50.0,200),clampf(push_obj_enemy.y,50,200)) * direction
 			velocity = final
-		print (velocity)
+		#print (velocity)
 		move_and_slide()
 
 func die():

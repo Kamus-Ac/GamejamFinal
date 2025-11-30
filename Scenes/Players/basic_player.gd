@@ -6,6 +6,9 @@ signal player_attack(dir: Vector2)
 signal player_ulti()
 @onready var attack_area: Area2D = $Flip/Areas/AttackArea
 @onready var anim: AnimatedSprite2D = $Flip/AnimatedSprite2D
+@onready var ulti_area: Area2D = $Flip/Areas/UltiArea
+
+
 
 #@onready var attack_area: Area2D = $AttackArea
 #@onready var ulti_area: Area2D = $UltiArea
@@ -32,7 +35,7 @@ func _physics_process(delta: float) -> void:
 
 func basic_attack() -> void:
 	var dir := get_attack_direction()
-	emit_signal("player_attack", dir)
+	#emit_signal("player_attack", dir)
 	#anim.play("BasicAttack")
 
 		# DEBUG: posición y tamaño del area
@@ -47,21 +50,24 @@ func basic_attack() -> void:
 			if b.has_method("die"):
 				b.die()
 
+
+
 func ulti_attack() -> void:
-	# Guardamos escala original
-	var original_scale = attack_area.scale
+	var dir := get_attack_direction()
+	#emit_signal("player_attack", dir)
+	#anim.play("BasicAttack")
 
-	# Lo agrandamos temporalmente
-	attack_area.scale = Vector2(4, 4)
+		# DEBUG: posición y tamaño del area
+	#print("AttackArea global_pos:", attack_area.global_position, "shape:", attack_area.get_node("CollisionShape2D").shape)
 
-	var bodies := attack_area.get_overlapping_bodies()
+		# Opción robusta: tomar cuerpos superpuestos AHORA mismo
+	var bodies := ulti_area.get_overlapping_bodies()
+	print("Bodies overlapped ULTI(count):", bodies.size())
 	for b in bodies:
+		print(" - found:", b, " groups:", b.get_groups())
 		if b and b.is_in_group("enemies"):
 			if b.has_method("die"):
 				b.die()
-
-	# Regresar a tamaño original
-	attack_area.scale = original_scale
 
 
 
@@ -73,4 +79,4 @@ func get_attack_direction() -> Vector2:
 func _on_anim_finished() -> void:
 	# cuando termina attack o ulti, volver a idle
 	if anim.animation == "BasicAttack": #or anim.animation == "ulti":
-		#anim.play("walk")
+		pass#anim.play("walk")
