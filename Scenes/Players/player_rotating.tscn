@@ -13,18 +13,20 @@ script = ExtResource("2_m1cum")
 
 [node name="AnimatedSprite2D" parent="Flip" index="0"]
 sprite_frames = ExtResource("5_klec2")
-animation = &"basicAttack"
+animation = &"death"
 
 [node name="CollisionShape2D" parent="Flip/Areas/recolect" index="0"]
 position = Vector2(15, 1)
 shape = ExtResource("5_12uka")
 
 [node name="CollisionShape2D" parent="Flip/Areas/AttackArea" index="0"]
-position = Vector2(12, 14)
+position = Vector2(11.555, 7.715)
+scale = Vector2(0.625, 0.625)
 shape = ExtResource("6_88hw3")
 
 [node name="CollisionShape2D" parent="Flip/Areas/Daño" index="0"]
-position = Vector2(0, 10)
+position = Vector2(0, 6.025)
+scale = Vector2(1.365, 1.365)
 shape = SubResource("CircleShape2D_klec2")
 
 [node name="Marker2D" type="Marker2D" parent="." index="1"]
