@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsaua6iwjkfft"]
+
+[ext_resource type="SpriteFrames" uid="uid://b36duwilq1dvt" path="res://Scenes/Players/Gordo/Animaciones/loli.tres" id="1_jcvw6"]
+[ext_resource type="Script" uid="uid://ycu2q01ywlf4" path="res://Scenes/Enemies/enemy.gd" id="1_x1rqp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcvw6"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_x1rqp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.011764706, 0, 1)
+sprite_frames = ExtResource("1_jcvw6")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.43, 1.43)
+shape = SubResource("CircleShape2D_jcvw6")
+
+[node name="HitLag" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="HitLag" to="." method="_on_hit_lag_timeout"]

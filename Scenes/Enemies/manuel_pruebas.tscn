@@ -12,4 +12,5 @@
 zoom = Vector2(3, 3)
 
 [node name="BasicPlayer" parent="." instance=ExtResource("3_ao36t")]
-position = Vector2(65, 36)
+position = Vector2(106, 68)
+metadata/_edit_group_ = true

@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @export var skins: Array[SpriteFrames]  # aquí pondrás tus 8 skins
 @onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var isDead: bool = false
+
 
 signal died
 const MAX_SPEED = 75
@@ -22,6 +24,12 @@ var push_obj_enemy : Vector2 = Vector2.ZERO
 var mag_obj_enemy : float = 0
 var push_enemy_enemy : Vector2 = Vector2.ZERO
 
+enum STATE {
+	RUNNING,
+	DEAD
+}
+
+var current_state: STATE = STATE.RUNNING
 
 func _ready() -> void:
 	SignalManager.isLaunching.connect(islaunching)
@@ -29,40 +37,47 @@ func _ready() -> void:
 
 
 func _physics_process(_delta):
-	if !hitting:
-		var direction = get_direction_to_player()		
-		vel = direction * MAX_SPEED
-		velocity = vel
-		collision = move_and_collide(velocity*_delta)
-		if collision: 
-			check = collision.get_collider()
-			if check.is_in_group("objects") || check.is_in_group("enemies"):
-				SignalManager.isLaunching.emit()
-	if hitting:
-		if hit_enemy_enemy:
-			var push_force = Vector2(
-			clampf(push_enemy_enemy.x, 100, 100.0),
-			clampf(push_enemy_enemy.y, 100, 100.0)
-			)
-			var final = Vector2(
-			push_force.x * sign(push_enemy_enemy.x),
-			push_force.y * sign(push_enemy_enemy.y)
-			)
-			velocity = final
-		if hit_obj_enemy:
-			push_obj_enemy += push_obj_enemy 
-			var push_force = Vector2(
-			clampf(push_obj_enemy.x, 100, 100.0),
-			clampf(push_obj_enemy.y, 100, 100.0)
-			)
-			var final = Vector2(
-			push_force.x * sign(push_obj_enemy.x),
-			push_force.y * sign(push_obj_enemy.y)
-			)
-			#velocity = Vector2(clampf(push_obj_enemy.x,50.0,200),clampf(push_obj_enemy.y,50,200)) * direction
-			velocity = final
-		#print (velocity)
-		move_and_slide()
+	match current_state:
+		STATE.RUNNING:
+			#anim.play("run")
+			if !hitting:
+				var direction = get_direction_to_player()		
+				vel = direction * MAX_SPEED
+				velocity = vel
+				collision = move_and_collide(velocity*_delta)
+				if collision: 
+					check = collision.get_collider()
+					if check.is_in_group("objects") || check.is_in_group("enemies"):
+						SignalManager.isLaunching.emit()
+			if hitting:
+				if hit_enemy_enemy:
+					var push_force = Vector2(
+					clampf(push_enemy_enemy.x, 100, 100.0),
+					clampf(push_enemy_enemy.y, 100, 100.0)
+					)
+					var final = Vector2(
+					push_force.x * sign(push_enemy_enemy.x),
+					push_force.y * sign(push_enemy_enemy.y)
+					)
+					velocity = final
+				if hit_obj_enemy:
+					push_obj_enemy += push_obj_enemy 
+					var push_force = Vector2(
+					clampf(push_obj_enemy.x, 100, 100.0),
+					clampf(push_obj_enemy.y, 100, 100.0)
+					)
+					var final = Vector2(
+					push_force.x * sign(push_obj_enemy.x),
+					push_force.y * sign(push_obj_enemy.y)
+					)
+					#velocity = Vector2(clampf(push_obj_enemy.x,50.0,200),clampf(push_obj_enemy.y,50,200)) * direction
+					velocity = final
+			#print (velocity)
+			move_and_slide()
+		STATE.DEAD:
+			#anim.play(death)
+			pass
+		
 
 
 func assign_random_skin():
@@ -80,6 +95,9 @@ func assign_random_skin():
 
 func die():
 	emit_signal("died")
+	isDead = true
+	current_state = STATE.DEAD
+	await anim.animation_finished
 	queue_free()
 
 func get_direction_to_player():
@@ -119,3 +137,7 @@ func _on_hit_lag_timeout() -> void:
 	
 	if hit_enemy_enemy:
 		hit_enemy_enemy=false
+
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	pass # Replace with function body.
