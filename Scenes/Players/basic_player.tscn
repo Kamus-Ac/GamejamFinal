@@ -9,6 +9,8 @@ y_sort_enabled = true
 collision_mask = 9
 script = ExtResource("1_qdrsv")
 
+[node name="Coll" type="CollisionShape2D" parent="."]
+
 [node name="Flip" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Flip"]
