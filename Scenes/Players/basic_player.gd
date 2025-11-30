@@ -11,7 +11,7 @@ signal animation_done
 
 #---VIDA---#
 #var hearts_list: Array[TextureRect]
-var health = 4
+var health = 50
 
 
 enum STATE {
