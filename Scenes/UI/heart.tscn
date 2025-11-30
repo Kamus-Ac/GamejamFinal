@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5xdnwpiu4oxx"]
+
+[ext_resource type="SpriteFrames" uid="uid://b6e6oqvokyycn" path="res://Scenes/UI/heart.tres" id="1_3r3sn"]
+
+[node name="heart" type="AnimatedSprite2D"]
+scale = Vector2(5.105, 5.105)
+sprite_frames = ExtResource("1_3r3sn")
+animation = &"vivo"
