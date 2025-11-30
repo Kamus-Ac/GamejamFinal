@@ -23,6 +23,7 @@ shape = ExtResource("5_12uka")
 position = Vector2(11.555, 7.715)
 scale = Vector2(0.625, 0.625)
 shape = ExtResource("6_88hw3")
+debug_color = Color(0.99607843, 0, 0.17254902, 0.8784314)
 
 [node name="CollisionShape2D" parent="Flip/Areas/Daño" index="0"]
 position = Vector2(0, 6.025)
