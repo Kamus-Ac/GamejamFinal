@@ -24,8 +24,7 @@ func _ready() -> void:
 
 func _physics_process(_delta):
 	if !hitting:
-		var direction = get_direction_to_player()
-		
+		var direction = get_direction_to_player()		
 		vel = direction * MAX_SPEED
 		velocity = vel
 		collision = move_and_collide(velocity*_delta)

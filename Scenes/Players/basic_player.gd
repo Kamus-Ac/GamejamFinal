@@ -9,6 +9,9 @@ signal animation_done
 @onready var anim: AnimatedSprite2D = $Flip/AnimatedSprite2D
 @onready var ulti_area: Area2D = $Flip/Areas/UltiArea
 
+#---VIDA---#
+#var hearts_list: Array[TextureRect]
+var health = 4
 
 
 enum STATE {
@@ -33,6 +36,8 @@ func _ready() -> void:
 	# por defecto el area no "monitorea" (no es requerido si usamos get_overlapping_bodies())
 	attack_area.monitoring = true 
 	#ulti_area.monitoring = false
+	
+	#habria que agregar los corazones
 
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
@@ -92,6 +97,17 @@ func _physics_process(delta: float) -> void:
 		STATE.DEATH:
 			anim.play("death")
 
+func take_damage():	
+	if health>0:
+		health-=1
+		print("dfsd",health)
+		#animacion
+		#update heart display, es funcion
+	if health <= 0:
+		print("Jugador muerto")
+		queue_free()
+
+
 func basic_attack() -> void:
 	var dir := get_attack_direction()
 	#emit_signal("player_attack", dir)
@@ -108,8 +124,6 @@ func basic_attack() -> void:
 		if b and b.is_in_group("enemies"):
 			if b.has_method("die"):
 				b.die()
-
-
 
 func ulti_attack() -> void:
 	var dir := get_attack_direction()
@@ -128,14 +142,15 @@ func ulti_attack() -> void:
 			if b.has_method("die"):
 				b.die()
 
-
-
-
 func get_attack_direction() -> Vector2:
 	return (get_global_mouse_position() - global_position).normalized()
-
 
 func _on_anim_finished() -> void:
 	# cuando termina attack o ulti, volver a idle
 	if anim.animation == "BasicAttack": #or anim.animation == "ulti":
 		pass#anim.play("walk")
+
+
+func _on_daño_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		take_damage() # Replace with function body.
