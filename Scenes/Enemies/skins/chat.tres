@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://bln4bgg458q0p"]
+
+[ext_resource type="Texture2D" uid="uid://5qwkmeq20kdt" path="res://Scenes/Enemies/skins/IA_Chatgpt.png" id="1_n4m5v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe3d6"]
+atlas = ExtResource("1_n4m5v")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17w4u"]
+atlas = ExtResource("1_n4m5v")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5fn0d"]
+atlas = ExtResource("1_n4m5v")
+region = Rect2(128, 96, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe3d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17w4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5fn0d")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

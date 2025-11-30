@@ -22,7 +22,7 @@ skins = Array[SpriteFrames]([ExtResource("2_tq087"), ExtResource("2_jcvw6"), Ext
 position = Vector2(0, -18)
 sprite_frames = ExtResource("8_pko3b")
 animation = &"idle"
-frame_progress = 0.30489618
+frame_progress = 0.14821412
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.43, 1.43)
@@ -31,5 +31,4 @@ shape = SubResource("CircleShape2D_jcvw6")
 [node name="HitLag" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="HitLag" to="." method="_on_hit_lag_timeout"]

@@ -1,20 +1,60 @@
 extends Node
+
 @export var enemy_scene: PackedScene
-const SPAWN_RADIUS = 490
+@export var spawn_radius := 480
+@export var initial_spawn_count := 5
+@export var spawn_increase_per_wave := 3
+@export var max_enemies_per_wave := 25
+@export var spawn_delay := 0.2  # tiempo entre cada spawn
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$Timer.timeout.connect(on_timer_timeout)
+var current_wave := 1
+var enemies_alive := 0
 
+func _ready():
+	start_wave()
 
-func on_timer_timeout():
-	var player = get_tree().get_first_node_in_group("player") as Node2D
-	if player == null:
-		return	
-	var random_direction = Vector2.RIGHT.rotated(randf_range(0,TAU))
-	var spawn_position = player.global_position + (random_direction*SPAWN_RADIUS)
-	var enemy = enemy_scene.instantiate() as Node2D
+func start_wave():
+	print("=== STARTING WAVE", current_wave, "===")
 	
-	get_parent().add_child(enemy)
-	enemy.global_position = spawn_position
+	var enemies_to_spawn = min(
+		initial_spawn_count + (current_wave - 1) * spawn_increase_per_wave,
+		max_enemies_per_wave
+	)
 	
+	enemies_alive = enemies_to_spawn
+	print("Enemies this wave:", enemies_to_spawn)
+	
+	spawn_wave(enemies_to_spawn)
+
+func spawn_wave(count: int) -> void:
+	var player := get_tree().get_first_node_in_group("player") as Node2D
+	if not player:
+		push_warning("No player found in the scene!")
+		return
+
+	for i in range(count):
+		var dir := Vector2.RIGHT.rotated(randf_range(0, TAU))
+		var spawn_pos := player.global_position + dir * spawn_radius
+		
+		var enemy = enemy_scene.instantiate()
+		get_parent().add_child.call_deferred(enemy)
+		enemy.global_position = spawn_pos
+
+		# Asignar skin aleatorio desde el propio enemigo
+		if enemy.has_method("assign_random_skin"):
+			enemy.assign_random_skin()
+
+		# Conectar señal de muerte
+		enemy.died.connect(_on_enemy_died)
+
+		# Esperar un poco antes de spawnear el siguiente
+		if spawn_delay > 0:
+			await get_tree().create_timer(spawn_delay).timeout
+
+func _on_enemy_died():
+	enemies_alive -= 1
+	print("Enemy died. Alive:", enemies_alive)
+	
+	if enemies_alive <= 0:
+		current_wave += 1
+		start_wave()

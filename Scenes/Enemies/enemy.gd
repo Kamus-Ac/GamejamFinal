@@ -1,8 +1,12 @@
 extends CharacterBody2D
 @onready var hit_lag: Timer = $HitLag
-@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
+@export var skins: Array[SpriteFrames]  # aquí pondrás tus 8 skins
+@onready var anim_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var isDead: bool = false
 
+
+signal died
 const MAX_SPEED = 75
 const IMPULSE = 0.5
 
@@ -29,6 +33,8 @@ var current_state: STATE = STATE.RUNNING
 
 func _ready() -> void:
 	SignalManager.isLaunching.connect(islaunching)
+	assign_random_skin()
+
 
 func _physics_process(_delta):
 	match current_state:
@@ -73,7 +79,22 @@ func _physics_process(_delta):
 			pass
 		
 
+
+func assign_random_skin():
+	if anim_sprite == null:
+		push_warning("AnimatedSprite2D not found!")
+		return
+
+	if skins.size() > 0:
+		randomize()
+		var random_skin = skins[randi() % skins.size()]
+		anim_sprite.sprite_frames = random_skin
+		#anim_sprite.play("idle")
+
+
+
 func die():
+	emit_signal("died")
 	isDead = true
 	current_state = STATE.DEAD
 	await anim.animation_finished
