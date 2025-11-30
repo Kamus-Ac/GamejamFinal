@@ -50,7 +50,10 @@ func throw_object():
 	
 	object.get_parent().remove_child(object)
 	root_node.add_child(object)
+	var col = object.get_node("CollisionTF")
+	col.disabled = false
 	object.position =  objectPosition
+	
 	
 	object.apply_impulse(flip_position * -factor)
 	object = null
@@ -88,11 +91,12 @@ func rotate_object():
 	
 
 func grab_objects():
-	print (Input.is_action_just_pressed("Grab"))
 	if Input.is_action_just_pressed("Grab"):
 		grabbing = true
 		object.get_parent().remove_child(object)
 		marker_2d.add_child(object)
+		var col = object.get_node("CollisionTF")
+		col.disabled = true
 		object.linear_velocity = Vector2.ZERO
 		object.position = Vector2(25, 0)
 		
