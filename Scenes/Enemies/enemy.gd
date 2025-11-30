@@ -39,7 +39,7 @@ func _ready() -> void:
 func _physics_process(_delta):
 	match current_state:
 		STATE.RUNNING:
-			#anim.play("run")
+			anim_sprite.play("idle")
 			if !hitting:
 				var direction = get_direction_to_player()		
 				vel = direction * MAX_SPEED
@@ -75,7 +75,7 @@ func _physics_process(_delta):
 			#print (velocity)
 			move_and_slide()
 		STATE.DEAD:
-			#anim.play(death)
+			#anim_sprite.play("death")
 			pass
 		
 
@@ -97,7 +97,6 @@ func die():
 	emit_signal("died")
 	isDead = true
 	current_state = STATE.DEAD
-	await anim.animation_finished
 	queue_free()
 
 func get_direction_to_player():

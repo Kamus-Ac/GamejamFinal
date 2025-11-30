@@ -2,10 +2,10 @@ extends Node
 
 @export var enemy_scene: PackedScene
 @export var spawn_radius := 480
-@export var initial_spawn_count := 5
-@export var spawn_increase_per_wave := 3
-@export var max_enemies_per_wave := 25
-@export var spawn_delay := 0.2  # tiempo entre cada spawn
+@export var initial_spawn_count := 3
+@export var spawn_increase_per_wave := 2
+@export var max_enemies_per_wave := 20
+@export var spawn_delay := 0.6  # tiempo entre cada spawn
 
 var current_wave := 1
 var enemies_alive := 0
