@@ -17,8 +17,9 @@ gravity_scale = 0.0
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("1_x2w1k")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionTF" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_x2w1k")
+debug_color = Color(0.8156863, 0.4, 0.18431373, 0.84313726)
 
 [node name="Area2D" type="Area2D" parent="."]
 
