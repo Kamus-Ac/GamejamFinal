@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://daqttgfpr6wj2"]
+[gd_scene load_steps=8 format=4 uid="uid://daqttgfpr6wj2"]
 
 [ext_resource type="Script" uid="uid://by4w2pqjciigh" path="res://Scenes/Levels/level_base.gd" id="1_8s78d"]
 [ext_resource type="PackedScene" uid="uid://dvhw17bp32phn" path="res://Scenes/Players/player_rotating.tscn" id="2_ofisl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://o611ga5dcuxt" path="res://Scenes/GameCamera/game_camera.tscn" id="3_m7m8v"]
 [ext_resource type="PackedScene" uid="uid://b5xdnwpiu4oxx" path="res://Scenes/UI/heart.tscn" id="4_m7m8v"]
 [ext_resource type="PackedScene" uid="uid://dsaua6iwjkfft" path="res://Scenes/Enemies/enemy.tscn" id="5_t8ai0"]
+[ext_resource type="PackedScene" uid="uid://b2gft8tdpey3f" path="res://Scenes/Objects/object.tscn" id="7_ej2hx"]
 
 [node name="Level base" type="Node2D"]
 script = ExtResource("1_8s78d")
@@ -62,3 +63,6 @@ layout_mode = 2
 
 [node name="heart" parent="CanvasLayer/HBoxContainer/Heart3" instance=ExtResource("4_m7m8v")]
 position = Vector2(37, 52.999996)
+
+[node name="Object" parent="." instance=ExtResource("7_ej2hx")]
+position = Vector2(-55, 23)
