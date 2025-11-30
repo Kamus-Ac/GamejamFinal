@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://gxncnt6imh3x"]
+
+[ext_resource type="Texture2D" uid="uid://dunj7ewd883p7" path="res://Scenes/Enemies/skins/Yarbis_IA.png" id="1_x52c6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cijwc"]
+atlas = ExtResource("1_x52c6")
+region = Rect2(0, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v0fx"]
+atlas = ExtResource("1_x52c6")
+region = Rect2(64, 96, 64, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cijwc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v0fx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]

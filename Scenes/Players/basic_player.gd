@@ -20,7 +20,7 @@ enum STATE {
 	ATTACKING,
 	ATTACKING_ULTI,
 	HURTED,
-	DEATH
+	DEAD
 }
 
 var current_state: STATE = STATE.IDLE
@@ -94,18 +94,34 @@ func _physics_process(delta: float) -> void:
 				current_state = STATE.RUNNING
 		STATE.HURTED:
 			anim.play("hurt")
-		STATE.DEATH:
+			await animation_done
+			
+			if Input.is_action_just_pressed("BasicAttack"):
+				current_state = STATE.ATTACKING
+			
+			if Input.is_action_just_pressed("Ulti"):
+				current_state = STATE.ATTACKING_ULTI
+			
+			if input_dir == Vector2.ZERO:
+				current_state = STATE.IDLE
+			else:
+				current_state = STATE.RUNNING
+		STATE.DEAD:
 			anim.play("death")
+			velocity = Vector2.ZERO
 
 func take_damage():	
 	if health>0:
 		health-=1
 		print("dfsd",health)
 		SignalManager.took_damage.emit(health)
+		current_state = STATE.HURTED
 		#animacion
 		#update heart display, es funcion
 	if health <= 0:
 		print("Jugador muerto")
+		current_state = STATE.DEAD
+		await animation_done
 		queue_free()
 
 
@@ -154,4 +170,5 @@ func _on_anim_finished() -> void:
 
 func _on_daño_body_entered(body: Node2D) -> void:
 	if body.is_in_group("enemies"):
-		take_damage() # Replace with function body.
+		if body.isDead == false:
+			take_damage()
