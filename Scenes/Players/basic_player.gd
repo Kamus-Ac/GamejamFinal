@@ -7,9 +7,6 @@ signal player_ulti()
 @onready var attack_area: Area2D = $Flip/Areas/AttackArea
 @onready var anim: AnimatedSprite2D = $Flip/AnimatedSprite2D
 
-
-
-
 #@onready var attack_area: Area2D = $AttackArea
 #@onready var ulti_area: Area2D = $UltiArea
 
@@ -30,8 +27,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("BasicAttack"):
 		basic_attack()
 
-#	if Input.is_action_just_pressed("Ulti"):
-		#ulti_attack()
+	if Input.is_action_just_pressed("Ulti"):
+		ulti_attack()
 
 func basic_attack() -> void:
 	var dir := get_attack_direction()
@@ -50,13 +47,23 @@ func basic_attack() -> void:
 			if b.has_method("die"):
 				b.die()
 
-#func ulti_attack() -> void:
-	#anim.play("ulti")
-	#var bodies := ulti_area.get_overlapping_bodies()
-	#for b in bodies:
-		#if b and b.is_in_group("enemy"):
-			#if b.has_method("die"):
-				#b.die()
+func ulti_attack() -> void:
+	# Guardamos escala original
+	var original_scale = attack_area.scale
+
+	# Lo agrandamos temporalmente
+	attack_area.scale = Vector2(4, 4)
+
+	var bodies := attack_area.get_overlapping_bodies()
+	for b in bodies:
+		if b and b.is_in_group("enemies"):
+			if b.has_method("die"):
+				b.die()
+
+	# Regresar a tamaño original
+	attack_area.scale = original_scale
+
+
 
 
 func get_attack_direction() -> Vector2:
@@ -66,4 +73,4 @@ func get_attack_direction() -> Vector2:
 func _on_anim_finished() -> void:
 	# cuando termina attack o ulti, volver a idle
 	if anim.animation == "BasicAttack": #or anim.animation == "ulti":
-		anim.play("walk")
+		#anim.play("walk")
